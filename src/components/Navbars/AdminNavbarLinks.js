@@ -51,15 +51,6 @@ export default function NavBar() {
     }, [web3Modal, connectWallet]);
 
     useEffect(() => {
-        console.log(networkId,process.env.REACT_APP_NETWORK_ID)
-        console.log(
-            web3,
-            address,
-            connectWalletPending,
-            networkId,
-            Boolean(networkId !== Number(process.env.REACT_APP_NETWORK_ID)),
-            process.env.REACT_APP_NETWORK_ID,
-        );
         if (
             web3 &&
             address &&

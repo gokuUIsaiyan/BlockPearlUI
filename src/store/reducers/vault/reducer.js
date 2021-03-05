@@ -1,8 +1,8 @@
 import fetchBalances from "./fetchBalances";
+import fetchChartData from "./fetchChartData";
 import initialState from "./initialState";
 
-const reducers = [fetchBalances];
-
+const reducers = [fetchBalances,fetchChartData];
 
 export default function reducer(state = initialState, action) {
     let newState;

@@ -29,8 +29,8 @@ import Unarchive from "@material-ui/icons/Unarchive";
 import Language from "@material-ui/icons/Language";
 // core components/views for Admin layout
 import SignalPage from "views/Signals/Signals.js";
-import UserProfile from "views/UserProfile/UserProfile.js";
-import TableList from "views/TableList/TableList.js";
+import Chart from "views/Chart/Chart.js";
+import TableList from "views/Transaction/TableList.js";
 
 // core components/views for RTL layout
 
@@ -46,7 +46,7 @@ const dashboardRoutes = [
     path: "/chart",
     name: "Chart",
     icon: BarChartIcon,
-    component: UserProfile,
+    component: Chart,
     layout: "/admin"
   },
   {

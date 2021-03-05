@@ -15,6 +15,7 @@ const useStyles = makeStyles(styles);
 export default function CardHeader(props) {
   const classes = useStyles();
   const { className, children, color, plain, stats, icon, ...rest } = props;
+  console.log(classes)
   const cardHeaderClasses = classNames({
     [classes.cardHeader]: true,
     [classes[color + "CardHeader"]]: color,
@@ -32,14 +33,7 @@ export default function CardHeader(props) {
 
 CardHeader.propTypes = {
   className: PropTypes.string,
-  color: PropTypes.oneOf([
-    "warning",
-    "success",
-    "danger",
-    "info",
-    "primary",
-    "rose"
-  ]),
+  color: PropTypes.string,
   plain: PropTypes.bool,
   stats: PropTypes.bool,
   icon: PropTypes.bool,

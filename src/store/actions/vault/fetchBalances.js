@@ -63,6 +63,8 @@ export function fetchBalances({addresses, web3,table}) {
                         path: table||Summary_Table,
                         data: obj
                     });
+                    resolve();
+
                 }).catch((error) => {
                 dispatch({
                     type: FETCH_BALANCES_FAILURE,

@@ -1,8 +1,7 @@
 import axios from "axios";
 
 const axiosURL = axios.create({
-    //baseURL: "https://api.blockpearl.finance/api/v1/"
-    baseURL: "http://localhost:8000/api/v1/"
+    baseURL: process.env.REACT_APP_API_HOST
 });
 
 export {axiosURL};

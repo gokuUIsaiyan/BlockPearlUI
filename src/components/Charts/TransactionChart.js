@@ -13,54 +13,24 @@ import {
 } from 'recharts';
 import {GetBuyChartData, GetNetChartData, GetSellChartData, GetVolumeChartData} from "api/queries";
 import moment from "moment";
+import {infoColor} from "../../assets/jss/material-dashboard-react";
+import {useFetchChartData} from "../../store/hooks/vault/useFetchChartData";
 
 export const TransactionChart = ({time, type}) => {
     const [pair, setPair] = useState('0x2366eC9dDD1eB27506Fa2Ed48Da8f2D9e99ed3c7')
     const [token, setToken] = useState('0x4197c6ef3879a08cd51e5560da5064b773aa1d29')
-
-    const [chartData, setChartData] = useState([]);
+    const {fetchChartData,chartData} = useFetchChartData();
     const [colors,setColors] = useState([]);
     const [startIndex,setStartIndex] = useState(0)
 
-    const getData = (time, pair, token, type, min, max) => {
-        let a = []
-        switch (type) {
-            case 'net':
-                GetNetChartData(time, pair, token, min, max).then(r => {
-                    setChartData(r.reverse())
-                    getColors(r.reverse())
-                });
-                break;
-            case 'volume':
-                GetVolumeChartData(time, pair, token, min, max).then(r => {
-                    setChartData(r.reverse())
-                    getColors(r.reverse())
-                });
-                break;
-            case 'buy':
-                GetBuyChartData(time, pair, token, min, max).then(r => {
-                    setChartData(r.reverse())
-                    getColors(r.reverse())
-                });
-                break;
-            case 'sell':
-                GetSellChartData(time, pair, token, min, max).then(r => {
-                    setChartData(r.reverse())
-                    getColors(r.reverse())
-                });
-                break;
-        }
-
-    }
-
-    const getColors = (r) => {
+    useEffect(() =>{
         const temp = []
-        r.map((entry) => {
+        chartData.map((entry) => {
             const color = entry.value > 0 ? COLORS[0] : COLORS[1];
             temp.push(color)
         })
         setColors(temp)
-    }
+    },[chartData])
 
     useEffect(() => {
         let min = 0;
@@ -77,9 +47,9 @@ export const TransactionChart = ({time, type}) => {
             min = moment().subtract(2, 'days').unix();
             console.log(max, min)
         }
-
-        getData(time, pair, token, type, min, max)
-    }, [time, pair, token, type])
+        console.log(process.env.REACT_APP_API_HOST);
+        fetchChartData({time, pair, token, type, min, max})
+    }, [time, pair, token, type]);
 
     function formatXAxis(tickItem) {
         return moment(tickItem).format('MMM Do YY')
@@ -87,6 +57,8 @@ export const TransactionChart = ({time, type}) => {
 
 
     const COLORS = ['#00CA4E', '#FF605C'];
+
+    console.log(chartData)
     return (
         <>
             {
@@ -109,7 +81,7 @@ export const TransactionChart = ({time, type}) => {
                         <YAxis/>
                         <Tooltip/>
                         <ReferenceLine y={0}/>
-                        <Brush dataKey="datetime" height={50} stroke="#ffa500" tickFormatter={formatXAxis} onChange={(e) => setStartIndex(e.startIndex)}/>
+                        <Brush dataKey="datetime" height={50} stroke={infoColor[0]} tickFormatter={formatXAxis} onChange={(e) => setStartIndex(e.startIndex)}/>
                         <Bar dataKey="value" >
                             {
                                 chartData.map((_, index) => {

@@ -1,6 +1,6 @@
 import {useCallback} from 'react';
 import {shallowEqual, useDispatch, useSelector} from 'react-redux';
-import {fetchBalances} from '../actions/vault/fetchBalances';
+import {fetchBalances} from '../../actions/vault/fetchBalances';
 
 export function useFetchBalances() {
     const dispatch = useDispatch();

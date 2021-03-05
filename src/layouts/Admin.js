@@ -82,7 +82,7 @@ export default function Admin({ ...rest }) {
     <div className={classes.wrapper}>
       <Sidebar
         routes={routes}
-        logoText={"BlockPearl.finance"}
+        logoText={"Dashboard"}
         handleDrawerToggle={handleDrawerToggle}
         open={mobileOpen}
         color={color}

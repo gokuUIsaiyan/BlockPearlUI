@@ -80,7 +80,7 @@ export default function Signals() {
                             </Select>
                         </FormControl>
                                     {/*<FormControl className={classes.formControl} >*/}
-                                    {/*    <InputLabel style={{color: 'black'}} htmlFor="filled-age-native-simple">Chart*/}
+                                    {/*    <InputLabel style={{color: 'black'}} htmlFor="filled-age-native-simple">Transaction*/}
                                     {/*        Data</InputLabel>*/}
                                     {/*    <Select*/}
                                     {/*        native*/}
